@@ -13,7 +13,9 @@ import Comunidades from "../screens/Comunidades";
 import Jogos from "../screens/Jogos";
 import Livros from "../screens/Livros";
 import MakeLove from "../screens/MakeLove";
+import CrudScreen from "../screens/CrudScreen";
 
+//CrudScreen
 //Amigos
 
 const Tab = createBottomTabNavigator();
@@ -34,6 +36,7 @@ export default function TabRoutes() {
             <Tab.Screen name="Jogos" component={Jogos} />
             <Tab.Screen name="Livros" component={Livros} />
             <Tab.Screen name="MakeLove" component={MakeLove} />
+            <Tab.Screen name="CrudScreen" component={CrudScreen} />
         </Tab.Navigator>
     );
 }
