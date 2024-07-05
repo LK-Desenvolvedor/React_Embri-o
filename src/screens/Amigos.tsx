@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Feed() {
+export default function Amigos() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Feed</Text>
+      <Text style={styles.title}>Amigos</Text>
     </View>
   );
 }
