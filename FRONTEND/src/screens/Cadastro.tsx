@@ -6,8 +6,26 @@ export default function Cadastro() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignUp = () => {
-    Alert.alert('Cadastro realizado com sucesso!', `Nome: ${name}\nEmail: ${email}`);
+  const handleSignUp = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email, password })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        Alert.alert('Cadastro realizado com sucesso!', `Nome: ${data.name}\nEmail: ${data.email}`);
+      } else {
+        Alert.alert('Erro ao cadastrar', data.message || 'Ocorreu um erro.');
+      }
+    } catch (error) {
+      Alert.alert('Erro', 'Não foi possível conectar ao servidor.');
+    }
   };
 
   return (

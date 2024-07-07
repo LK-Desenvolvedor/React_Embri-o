@@ -6,10 +6,20 @@ require('dotenv').config();
 
 const app = express();
 
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:8081'];
+
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'A política de CORS para este site não permite acesso a partir da origem especificada.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
   optionsSuccessStatus: 200
 }));
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
